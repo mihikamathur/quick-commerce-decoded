@@ -1,5 +1,5 @@
 
-import { Archetypes } from "@/components/system-analysis/archetypes";
+import { SystemArchetypes } from "@/components/system-analysis/archetypes";
 import { CausalLoopDiagram } from "@/components/system-analysis/causal-loop-diagram";
 import { SystemLevels } from "@/components/system-analysis/system-levels";
 import { Footer } from "@/components/ui/footer";
@@ -12,7 +12,7 @@ const SystemAnalysis = () => {
       <main className="flex-grow">
         <CausalLoopDiagram />
         <SystemLevels />
-        <Archetypes />
+        <SystemArchetypes />
       </main>
       <Footer />
     </div>
