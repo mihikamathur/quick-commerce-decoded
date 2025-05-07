@@ -81,11 +81,34 @@ export function EventPatternStructure() {
     }
   ];
 
+  const mentalModelItems: AnalysisItem[] = [
+    {
+      title: "Time is more valuable than money",
+      description: "The belief that saving time at any cost is worth the premium price of quick commerce."
+    },
+    {
+      title: "The faster, the better",
+      description: "The assumption that speed is inherently better in all aspects of commerce and life."
+    },
+    {
+      title: "Convenience supersedes consequences",
+      description: "The mindset that personal convenience outweighs broader social and environmental impacts."
+    },
+    {
+      title: "Technology should eliminate all friction",
+      description: "The expectation that digital solutions should remove all waiting and effort from daily tasks."
+    },
+    {
+      title: "Progress means increasing speed",
+      description: "The belief that advancement is measured by how quickly we can fulfill desires rather than sustainability."
+    }
+  ];
+
   return (
     <section className="section bg-commerce-muted/10">
       <div className="container-custom">
         <SectionHeader
-          title="Event-Pattern-Structure Analysis"
+          title="Event-Pattern-Structure-Mental Models Analysis"
           subtitle="Analyzing quick commerce at multiple levels of systemic depth"
           centered
         />
@@ -93,10 +116,11 @@ export function EventPatternStructure() {
         <Card className="mb-8">
           <CardContent className="p-6">
             <Tabs defaultValue="events" onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 h-auto mb-6">
+              <TabsList className="grid w-full grid-cols-1 md:grid-cols-4 h-auto mb-6">
                 <TabsTrigger value="events" className="py-3">Events</TabsTrigger>
                 <TabsTrigger value="patterns">Patterns</TabsTrigger>
                 <TabsTrigger value="structures">Structures</TabsTrigger>
+                <TabsTrigger value="mental-models">Mental Models</TabsTrigger>
               </TabsList>
               
               <TabsContent value="events" className="animate-fade-in space-y-4">
@@ -194,20 +218,59 @@ export function EventPatternStructure() {
                   ))}
                 </div>
                 
-                <div className="p-4 mt-4 bg-amber-50 border border-amber-100 rounded-lg">
-                  <h4 className="font-medium text-amber-700 mb-2">Key Insight</h4>
-                  <p className="text-muted-foreground text-sm">
-                    Most solutions target events or symptoms, but real change needs structural transformation—through
-                    policy, incentives, and consumer mindset shifts.
-                  </p>
-                </div>
-                
-                <div className="flex justify-start mt-6">
+                <div className="flex justify-between mt-6">
                   <button 
                     onClick={() => setActiveTab("patterns")} 
                     className="flex items-center gap-1 text-green-600 text-sm font-medium hover:underline"
                   >
                     <span className="mr-1">←</span> Back to Patterns
+                  </button>
+                  <button 
+                    onClick={() => setActiveTab("mental-models")} 
+                    className="flex items-center gap-1 text-green-600 text-sm font-medium hover:underline"
+                  >
+                    Next: Mental Models <span className="ml-1">→</span>
+                  </button>
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="mental-models" className="animate-fade-in space-y-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-xl">
+                    M
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold">Mental Models</h3>
+                    <p className="text-muted-foreground">The deep beliefs, assumptions, and values that create and sustain structures</p>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 gap-4">
+                  {mentalModelItems.map((item, index) => (
+                    <div 
+                      key={index} 
+                      className="p-4 rounded-lg border border-amber-100 bg-amber-50 hover:bg-amber-100 transition-colors"
+                    >
+                      <h4 className="font-medium text-amber-700 mb-1">{item.title}</h4>
+                      <p className="text-muted-foreground text-sm">{item.description}</p>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="p-4 mt-4 bg-blue-50 border border-blue-100 rounded-lg">
+                  <h4 className="font-medium text-blue-700 mb-2">System Leverage Point</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Transforming mental models offers the highest leverage for system change. By shifting our collective beliefs about speed, 
+                    convenience, and what constitutes progress, we can reshape structures, alter patterns, and create new events.
+                  </p>
+                </div>
+                
+                <div className="flex justify-start mt-6">
+                  <button 
+                    onClick={() => setActiveTab("structures")} 
+                    className="flex items-center gap-1 text-amber-600 text-sm font-medium hover:underline"
+                  >
+                    <span className="mr-1">←</span> Back to Structures
                   </button>
                 </div>
               </TabsContent>
