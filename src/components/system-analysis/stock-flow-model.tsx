@@ -1,7 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeader } from "@/components/ui/section-header";
-import Image from "react-bootstrap/Image";
+import { ArrowRight, Box, ChevronUp, ChevronDown, Users, Package, Timer, TrendingUp, TrendingDown } from "lucide-react";
 
 export function StockFlowModel() {
   return (
@@ -22,12 +22,90 @@ export function StockFlowModel() {
                 delivery pressure, rest periods, and service quality.
               </p>
               
-              <div className="relative w-full overflow-hidden rounded-lg border border-muted">
-                <img 
-                  src="/lovable-uploads/93ba41a0-3eab-4cda-a052-2919d1ed216d.png" 
-                  alt="Stock and Flow Model for Quick Commerce" 
-                  className="w-full object-contain"
-                />
+              <div className="relative w-full border border-muted rounded-lg p-6 mb-6 bg-white">
+                <div className="flex flex-col lg:flex-row gap-8 justify-center items-center">
+                  {/* Worker Fatigue Stock */}
+                  <div className="flex flex-col items-center">
+                    <div className="text-center font-medium mb-2">Worker Fatigue</div>
+                    <div className="h-32 w-32 border-2 rounded-md border-orange-500 flex items-center justify-center">
+                      <Users className="h-12 w-12 text-orange-500" />
+                    </div>
+                    <div className="flex items-center mt-2">
+                      <div className="text-xs bg-orange-100 rounded-md p-1 px-2 text-orange-700">STOCK</div>
+                    </div>
+                    <div className="flex flex-col items-center mt-3 space-y-1">
+                      <div className="flex items-center gap-1 text-sm">
+                        <TrendingUp className="h-4 w-4 text-red-500" />
+                        <span className="text-muted-foreground">Delivery Pressure</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-sm">
+                        <TrendingDown className="h-4 w-4 text-green-500" />
+                        <span className="text-muted-foreground">Rest Periods</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Flow arrows */}
+                  <div className="flex flex-col md:flex-row items-center">
+                    <ArrowRight className="h-8 w-8 text-blue-500 hidden md:block" />
+                    <ChevronDown className="h-8 w-8 text-blue-500 md:hidden" />
+                  </div>
+                  
+                  {/* Orders Stock */}
+                  <div className="flex flex-col items-center">
+                    <div className="text-center font-medium mb-2">Orders</div>
+                    <div className="h-32 w-32 border-2 rounded-md border-blue-500 flex items-center justify-center">
+                      <Package className="h-12 w-12 text-blue-500" />
+                    </div>
+                    <div className="flex items-center mt-2">
+                      <div className="text-xs bg-blue-100 rounded-md p-1 px-2 text-blue-700">STOCK</div>
+                    </div>
+                    <div className="flex flex-col items-center mt-3 space-y-1">
+                      <div className="flex items-center gap-1 text-sm">
+                        <TrendingUp className="h-4 w-4 text-red-500" />
+                        <span className="text-muted-foreground">Customer Demand</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-sm">
+                        <TrendingDown className="h-4 w-4 text-green-500" />
+                        <span className="text-muted-foreground">Order Fulfillment</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Flow arrows */}
+                  <div className="flex flex-col md:flex-row items-center">
+                    <ArrowRight className="h-8 w-8 text-green-500 hidden md:block" />
+                    <ChevronDown className="h-8 w-8 text-green-500 md:hidden" />
+                  </div>
+                  
+                  {/* Customer Satisfaction Stock */}
+                  <div className="flex flex-col items-center">
+                    <div className="text-center font-medium mb-2">Customer Satisfaction</div>
+                    <div className="h-32 w-32 border-2 rounded-md border-green-500 flex items-center justify-center">
+                      <Timer className="h-12 w-12 text-green-500" />
+                    </div>
+                    <div className="flex items-center mt-2">
+                      <div className="text-xs bg-green-100 rounded-md p-1 px-2 text-green-700">STOCK</div>
+                    </div>
+                    <div className="flex flex-col items-center mt-3 space-y-1">
+                      <div className="flex items-center gap-1 text-sm">
+                        <TrendingUp className="h-4 w-4 text-green-500" />
+                        <span className="text-muted-foreground">Positive Experiences</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-sm">
+                        <TrendingDown className="h-4 w-4 text-red-500" />
+                        <span className="text-muted-foreground">Service Failures</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Feedback loop arrows */}
+                <div className="mt-8 flex justify-center">
+                  <div className="w-3/4 h-12 border-2 border-dashed border-gray-400 rounded-full flex items-center justify-center">
+                    <span className="text-sm text-gray-600">System Feedback Loop</span>
+                  </div>
+                </div>
               </div>
               
               <div className="mt-6 text-sm text-muted-foreground p-4 bg-muted/30 rounded-lg w-full">
