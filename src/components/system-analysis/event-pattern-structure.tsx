@@ -3,10 +3,29 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { 
+  AlertCircle, 
+  Award, 
+  Book, 
+  Brain, 
+  ChevronRight, 
+  Clock, 
+  Cog, 
+  Handshake, 
+  Lightbulb 
+} from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 type AnalysisItem = {
   title: string;
   description: string;
+};
+
+type MentalModelCategory = {
+  name: string;
+  description: string;
+  icon: JSX.Element;
+  items: AnalysisItem[];
 };
 
 export function EventPatternStructure() {
@@ -81,26 +100,76 @@ export function EventPatternStructure() {
     }
   ];
 
-  const mentalModelItems: AnalysisItem[] = [
+  // Updated mental model categories with the new structure
+  const mentalModelCategories: MentalModelCategory[] = [
     {
-      title: "Time is more valuable than money",
-      description: "The belief that saving time at any cost is worth the premium price of quick commerce."
+      name: "Rules (Structures & Regulations)",
+      description: "Formal and informal systems that govern how quick commerce operates",
+      icon: <Book className="h-6 w-6 text-blue-600" />,
+      items: [
+        {
+          title: "Algorithms prioritize speed over quality",
+          description: "Technology systems are designed to optimize for delivery speed rather than quality or sustainability."
+        },
+        {
+          title: "Company policies penalize lateness",
+          description: "Internal reward systems punish late deliveries and reward fast ones, regardless of circumstances."
+        },
+        {
+          title: "Lack of labor protections",
+          description: "Gig workers often lack sick leave, insurance, or time-off allowances."
+        },
+        {
+          title: "Urban zoning & infrastructure",
+          description: "Cities are increasingly structured for high-speed last-mile delivery."
+        }
+      ]
     },
     {
-      title: "The faster, the better",
-      description: "The assumption that speed is inherently better in all aspects of commerce and life."
+      name: "Incentives (Motivations & Rewards)",
+      description: "What pushes individuals and organizations to keep the system going",
+      icon: <Award className="h-6 w-6 text-green-600" />,
+      items: [
+        {
+          title: "Customer incentives",
+          description: "Discounts, cashback, and free delivery for fast ordering encourage rapid consumption patterns."
+        },
+        {
+          title: "Worker incentives",
+          description: "Bonuses for meeting delivery speed targets create pressure to prioritize speed over safety."
+        },
+        {
+          title: "Platform incentives",
+          description: "Higher profit margins due to rapid turnover and increased order volume drive business decisions."
+        },
+        {
+          title: "Investor incentives",
+          description: "Funding tied to aggressive growth and market capture, not sustainability."
+        }
+      ]
     },
     {
-      title: "Convenience supersedes consequences",
-      description: "The mindset that personal convenience outweighs broader social and environmental impacts."
-    },
-    {
-      title: "Technology should eliminate all friction",
-      description: "The expectation that digital solutions should remove all waiting and effort from daily tasks."
-    },
-    {
-      title: "Progress means increasing speed",
-      description: "The belief that advancement is measured by how quickly we can fulfill desires rather than sustainability."
+      name: "Beliefs (Mental Models)",
+      description: "The underlying assumptions that justify or normalize the system",
+      icon: <Lightbulb className="h-6 w-6 text-amber-600" />,
+      items: [
+        {
+          title: "Faster is better",
+          description: "The belief that speed is inherently desirable in all aspects of commerce and life."
+        },
+        {
+          title: "Time is money",
+          description: "The assumption that saving time is always worth the financial, social, or environmental cost."
+        },
+        {
+          title: "Convenience is king",
+          description: "The belief that anything that makes life easier is automatically a net positive for society."
+        },
+        {
+          title: "Technology will solve everything",
+          description: "Faith that innovation will eventually cancel out any negative effects of current practices."
+        }
+      ]
     }
   ];
 
@@ -138,7 +207,8 @@ export function EventPatternStructure() {
                   {eventItems.map((item, index) => (
                     <div 
                       key={index} 
-                      className="p-4 rounded-lg border border-blue-100 bg-blue-50 hover:bg-blue-100 transition-colors"
+                      className="p-4 rounded-lg border border-blue-100 bg-blue-50 hover:bg-blue-100 transition-colors animate-fade-in"
+                      style={{ animationDelay: `${index * 100}ms` }}
                     >
                       <h4 className="font-medium text-blue-700 mb-1">{item.title}</h4>
                       <p className="text-muted-foreground text-sm">{item.description}</p>
@@ -149,9 +219,9 @@ export function EventPatternStructure() {
                 <div className="flex justify-end mt-6">
                   <button 
                     onClick={() => setActiveTab("patterns")} 
-                    className="flex items-center gap-1 text-blue-600 text-sm font-medium hover:underline"
+                    className="flex items-center gap-1 text-blue-600 text-sm font-medium hover:underline group"
                   >
-                    Next: Patterns <span className="ml-1">→</span>
+                    Next: Patterns <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </button>
                 </div>
               </TabsContent>
@@ -171,7 +241,8 @@ export function EventPatternStructure() {
                   {patternItems.map((item, index) => (
                     <div 
                       key={index} 
-                      className="p-4 rounded-lg border border-purple-100 bg-purple-50 hover:bg-purple-100 transition-colors"
+                      className="p-4 rounded-lg border border-purple-100 bg-purple-50 hover:bg-purple-100 transition-colors animate-fade-in"
+                      style={{ animationDelay: `${index * 100}ms` }}
                     >
                       <h4 className="font-medium text-purple-700 mb-1">{item.title}</h4>
                       <p className="text-muted-foreground text-sm">{item.description}</p>
@@ -182,15 +253,15 @@ export function EventPatternStructure() {
                 <div className="flex justify-between mt-6">
                   <button 
                     onClick={() => setActiveTab("events")} 
-                    className="flex items-center gap-1 text-purple-600 text-sm font-medium hover:underline"
+                    className="flex items-center gap-1 text-purple-600 text-sm font-medium hover:underline group"
                   >
-                    <span className="mr-1">←</span> Back to Events
+                    <ChevronRight className="mr-1 h-4 w-4 rotate-180 transition-transform group-hover:-translate-x-1" /> Back to Events
                   </button>
                   <button 
                     onClick={() => setActiveTab("structures")} 
-                    className="flex items-center gap-1 text-purple-600 text-sm font-medium hover:underline"
+                    className="flex items-center gap-1 text-purple-600 text-sm font-medium hover:underline group"
                   >
-                    Next: Structures <span className="ml-1">→</span>
+                    Next: Structures <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </button>
                 </div>
               </TabsContent>
@@ -210,7 +281,8 @@ export function EventPatternStructure() {
                   {structureItems.map((item, index) => (
                     <div 
                       key={index} 
-                      className="p-4 rounded-lg border border-green-100 bg-green-50 hover:bg-green-100 transition-colors"
+                      className="p-4 rounded-lg border border-green-100 bg-green-50 hover:bg-green-100 transition-colors animate-fade-in"
+                      style={{ animationDelay: `${index * 100}ms` }}
                     >
                       <h4 className="font-medium text-green-700 mb-1">{item.title}</h4>
                       <p className="text-muted-foreground text-sm">{item.description}</p>
@@ -221,22 +293,22 @@ export function EventPatternStructure() {
                 <div className="flex justify-between mt-6">
                   <button 
                     onClick={() => setActiveTab("patterns")} 
-                    className="flex items-center gap-1 text-green-600 text-sm font-medium hover:underline"
+                    className="flex items-center gap-1 text-green-600 text-sm font-medium hover:underline group"
                   >
-                    <span className="mr-1">←</span> Back to Patterns
+                    <ChevronRight className="mr-1 h-4 w-4 rotate-180 transition-transform group-hover:-translate-x-1" /> Back to Patterns
                   </button>
                   <button 
                     onClick={() => setActiveTab("mental-models")} 
-                    className="flex items-center gap-1 text-green-600 text-sm font-medium hover:underline"
+                    className="flex items-center gap-1 text-green-600 text-sm font-medium hover:underline group"
                   >
-                    Next: Mental Models <span className="ml-1">→</span>
+                    Next: Mental Models <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </button>
                 </div>
               </TabsContent>
               
-              <TabsContent value="mental-models" className="animate-fade-in space-y-4">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-xl">
+              <TabsContent value="mental-models" className="animate-fade-in space-y-6">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-xl animate-pulse">
                     M
                   </div>
                   <div>
@@ -245,20 +317,42 @@ export function EventPatternStructure() {
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-1 gap-4">
-                  {mentalModelItems.map((item, index) => (
+                <div className="space-y-6">
+                  {mentalModelCategories.map((category, categoryIndex) => (
                     <div 
-                      key={index} 
-                      className="p-4 rounded-lg border border-amber-100 bg-amber-50 hover:bg-amber-100 transition-colors"
+                      key={categoryIndex} 
+                      className="border border-amber-200 rounded-lg overflow-hidden animate-fade-in"
+                      style={{ animationDelay: `${categoryIndex * 150}ms` }}
                     >
-                      <h4 className="font-medium text-amber-700 mb-1">{item.title}</h4>
-                      <p className="text-muted-foreground text-sm">{item.description}</p>
+                      <div className="bg-amber-50 p-4 flex items-center gap-3">
+                        {category.icon}
+                        <div>
+                          <h3 className="font-medium text-amber-800">{category.name}</h3>
+                          <p className="text-sm text-amber-700/70">{category.description}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="divide-y divide-amber-100">
+                        {category.items.map((item, itemIndex) => (
+                          <div 
+                            key={itemIndex} 
+                            className="p-4 hover:bg-amber-50/50 transition-colors animate-fade-in"
+                            style={{ animationDelay: `${(categoryIndex * 150) + (itemIndex * 100)}ms` }}
+                          >
+                            <h4 className="font-medium text-amber-700 mb-1">{item.title}</h4>
+                            <p className="text-muted-foreground text-sm">{item.description}</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   ))}
                 </div>
                 
-                <div className="p-4 mt-4 bg-blue-50 border border-blue-100 rounded-lg">
-                  <h4 className="font-medium text-blue-700 mb-2">System Leverage Point</h4>
+                <div className="p-4 mt-4 bg-blue-50 border border-blue-100 rounded-lg animate-fade-in animate-pulse">
+                  <h4 className="font-medium text-blue-700 mb-2 flex items-center gap-2">
+                    <AlertCircle className="h-5 w-5" />
+                    System Leverage Point
+                  </h4>
                   <p className="text-muted-foreground text-sm">
                     Transforming mental models offers the highest leverage for system change. By shifting our collective beliefs about speed, 
                     convenience, and what constitutes progress, we can reshape structures, alter patterns, and create new events.
@@ -268,9 +362,9 @@ export function EventPatternStructure() {
                 <div className="flex justify-start mt-6">
                   <button 
                     onClick={() => setActiveTab("structures")} 
-                    className="flex items-center gap-1 text-amber-600 text-sm font-medium hover:underline"
+                    className="flex items-center gap-1 text-amber-600 text-sm font-medium hover:underline group"
                   >
-                    <span className="mr-1">←</span> Back to Structures
+                    <ChevronRight className="mr-1 h-4 w-4 rotate-180 transition-transform group-hover:-translate-x-1" /> Back to Structures
                   </button>
                 </div>
               </TabsContent>
